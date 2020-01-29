@@ -1,0 +1,1 @@
+'From Pharo7.0.4 of 13 August 2019 [Build information: Pharo-7.0.4+build.168.sha.ccd1f6489120f58ddeacb2cac77cd3a0f0dcfbe6 (64 Bit)] on 28 January 2020 at 10:26:28.783795 pm'!RobotMind subclass: #MyTeamMind	instanceVariableNames: ''	classVariableNames: ''	poolDictionaries: ''	category: 'JRMPC-Phase1-Minds'!
