@@ -1,0 +1,548 @@
+THERE_BE_DRAGONS_HERE
+Instance of ZnBufferedWriteStream did not understand #name
+29 January 2020 3:18:45.578906 pm
+
+VM: Win32 - X64 - 6.2 - CoInterpreter VMMaker.oscog-eem.2509 uuid: 91e81f64-95de-4914-a960-8f842be3a194 Sep 13 2019
+StackToRegisterMappingCogit VMMaker.oscog-eem.2509 uuid: 91e81f64-95de-4914-a960-8f842be3a194 Sep 13 2019
+VM: 201907031441-pharo Guille@DESKTOP-MG6660L:projects/vm7/opensmalltalk-vm Date: Wed Jul 3 16:41:39 2019 CommitHash: 4e4c5b5a0 Plugins: 201907031441-pharo Guille@DESKTOP-MG6660L:projects/vm7/opensmalltalk-vm
+
+Image: Pharo7.0.4 [Build information: Pharo-7.0.4+build.168.sha.ccd1f6489120f58ddeacb2cac77cd3a0f0dcfbe6 (64 Bit)]
+
+ZnBufferedWriteStream(Object)>>doesNotUnderstand: #name
+	Receiver: a ZnBufferedWriteStream
+	Arguments and temporary variables: 
+		aMessage: 	name
+		exception: 	MessageNotUnderstood: ZnBufferedWriteStream>>name
+		resumeValue: 	nil
+	Receiver's instance variables: 
+		stream: 	BinaryFileStream: 'C:\Users\mlbbe\Downloads\pharo-launcher-1.9.2.msi'
+		buffer: 	nil
+		position: 	0
+
+
+DefaultExternalDropHandler>>handle:in:dropEvent:
+	Receiver: a DefaultExternalDropHandler
+	Arguments and temporary variables: 
+		dropStream: 	a ZnBufferedWriteStream
+		pasteUp: 	a WorldMorph(479349760) [world]
+		anEvent: 	[(886@193) dropFilesEvent nil]
+		fileName: 	nil
+		services: 	nil
+		theOne: 	nil
+	Receiver's instance variables: 
+a DefaultExternalDropHandler
+
+[ :stream | handler handle: stream in: self dropEvent: anEvent ] in WorldMorph(PasteUpMorph)>>dropFiles:
+	Receiver: a WorldMorph(479349760) [world]
+	Arguments and temporary variables: 
+		anEvent: 	[(886@193) dropFilesEvent nil]
+		numFiles: 	1
+		i: 	1
+		aFileReference: 	File @ C:\Users\mlbbe\Downloads\pharo-launcher-1.9.2.msi
+		handler: 	a DefaultExternalDropHandler
+		stream: 	a ZnBufferedWriteStream
+	Receiver's instance variables: 
+		bounds: 	(0@0) corner: (976@665)
+		owner: 	nil
+		submorphs: 	an Array(a MenubarMorph(783971328) a TaskbarMorph(733536000) an Imag...etc...
+		fullBounds: 	(0@0) corner: (976@665)
+		color: 	(Color r: 0.295 g: 0.295 b: 0.295 alpha: 1.0)
+		extension: 	a MorphExtension (668403968) [other:  (dragEnabled -> true) (dropEna...etc...
+		borderWidth: 	0
+		borderColor: 	(Color r: 0.705 g: 0.705 b: 0.705 alpha: 1.0)
+		backgroundMorph: 	nil
+		worldState: 	a WorldState
+		griddingOn: 	nil
+		osWindow: 	nil
+		osWindowMutex: 	nil
+		session: 	nil
+
+
+[ aBlock value: stream ] in FileReference(AbstractFileReference)>>binaryWriteStreamDo:
+	Receiver: File @ C:\Users\mlbbe\Downloads\pharo-launcher-1.9.2.msi
+	Arguments and temporary variables: 
+		aBlock: 	[ :stream | handler handle: stream in: self dropEvent: anEvent ]
+		stream: 	a ZnBufferedWriteStream
+	Receiver's instance variables: 
+		filesystem: 	a FileSystem
+		path: 	Path / 'C:' / 'Users' / 'mlbbe' / 'Downloads' / 'pharo-launcher-1.9.2.msi...etc...
+
+
+BlockClosure>>ensure:
+	Receiver: [ aBlock value: stream ]
+	Arguments and temporary variables: 
+		aBlock: 	[ stream close ]
+		complete: 	nil
+		returnValue: 	nil
+	Receiver's instance variables: 
+		outerContext: 	FileReference(AbstractFileReference)>>binaryWriteStreamDo:
+		startpc: 	58
+		numArgs: 	0
+
+
+FileReference(AbstractFileReference)>>binaryWriteStreamDo:
+	Receiver: File @ C:\Users\mlbbe\Downloads\pharo-launcher-1.9.2.msi
+	Arguments and temporary variables: 
+		aBlock: 	[ :stream | handler handle: stream in: self dropEvent: anEvent ]
+		stream: 	a ZnBufferedWriteStream
+	Receiver's instance variables: 
+		filesystem: 	a FileSystem
+		path: 	Path / 'C:' / 'Users' / 'mlbbe' / 'Downloads' / 'pharo-launcher-1.9.2.msi...etc...
+
+
+WorldMorph(PasteUpMorph)>>dropFiles:
+	Receiver: a WorldMorph(479349760) [world]
+	Arguments and temporary variables: 
+		anEvent: 	[(886@193) dropFilesEvent nil]
+		numFiles: 	1
+		i: 	1
+		aFileReference: 	File @ C:\Users\mlbbe\Downloads\pharo-launcher-1.9.2.msi
+		handler: 	a DefaultExternalDropHandler
+	Receiver's instance variables: 
+		bounds: 	(0@0) corner: (976@665)
+		owner: 	nil
+		submorphs: 	an Array(a MenubarMorph(783971328) a TaskbarMorph(733536000) an Imag...etc...
+		fullBounds: 	(0@0) corner: (976@665)
+		color: 	(Color r: 0.295 g: 0.295 b: 0.295 alpha: 1.0)
+		extension: 	a MorphExtension (668403968) [other:  (dragEnabled -> true) (dropEna...etc...
+		borderWidth: 	0
+		borderColor: 	(Color r: 0.705 g: 0.705 b: 0.705 alpha: 1.0)
+		backgroundMorph: 	nil
+		worldState: 	a WorldState
+		griddingOn: 	nil
+		osWindow: 	nil
+		osWindowMutex: 	nil
+		session: 	nil
+
+
+WorldMorph(Morph)>>handleDropFiles:
+	Receiver: a WorldMorph(479349760) [world]
+	Arguments and temporary variables: 
+		anEvent: 	[(886@193) dropFilesEvent nil]
+	Receiver's instance variables: 
+		bounds: 	(0@0) corner: (976@665)
+		owner: 	nil
+		submorphs: 	an Array(a MenubarMorph(783971328) a TaskbarMorph(733536000) an Imag...etc...
+		fullBounds: 	(0@0) corner: (976@665)
+		color: 	(Color r: 0.295 g: 0.295 b: 0.295 alpha: 1.0)
+		extension: 	a MorphExtension (668403968) [other:  (dragEnabled -> true) (dropEna...etc...
+		borderWidth: 	0
+		borderColor: 	(Color r: 0.705 g: 0.705 b: 0.705 alpha: 1.0)
+		backgroundMorph: 	nil
+		worldState: 	a WorldState
+		griddingOn: 	nil
+		osWindow: 	nil
+		osWindowMutex: 	nil
+		session: 	nil
+
+
+DropFilesEvent>>sentTo:
+	Receiver: [(886@193) dropFilesEvent nil]
+	Arguments and temporary variables: 
+		anObject: 	a WorldMorph(479349760) [world]
+	Receiver's instance variables: 
+		timeStamp: 	nil
+		source: 	a HandMorph(454097152)
+		windowIndex: 	nil
+		position: 	(886@193)
+		contents: 	1
+		wasHandled: 	true
+
+
+WorldMorph(Morph)>>handleEvent:
+	Receiver: a WorldMorph(479349760) [world]
+	Arguments and temporary variables: 
+		anEvent: 	[(886@193) dropFilesEvent nil]
+	Receiver's instance variables: 
+		bounds: 	(0@0) corner: (976@665)
+		owner: 	nil
+		submorphs: 	an Array(a MenubarMorph(783971328) a TaskbarMorph(733536000) an Imag...etc...
+		fullBounds: 	(0@0) corner: (976@665)
+		color: 	(Color r: 0.295 g: 0.295 b: 0.295 alpha: 1.0)
+		extension: 	a MorphExtension (668403968) [other:  (dragEnabled -> true) (dropEna...etc...
+		borderWidth: 	0
+		borderColor: 	(Color r: 0.705 g: 0.705 b: 0.705 alpha: 1.0)
+		backgroundMorph: 	nil
+		worldState: 	a WorldState
+		griddingOn: 	nil
+		osWindow: 	nil
+		osWindowMutex: 	nil
+		session: 	nil
+
+
+MorphicEventDispatcher>>dispatchDefault:with:
+	Receiver: a MorphicEventDispatcher
+	Arguments and temporary variables: 
+		anEvent: 	[(886@193) dropFilesEvent nil]
+		aMorph: 	a WorldMorph(479349760) [world]
+		localEvt: 	[(886@193) dropFilesEvent nil]
+		index: 	4
+		child: 	an ImageMorph(47910656)
+		morphs: 	an Array(a MenubarMorph(783971328) a TaskbarMorph(733536000) an ImageMo...etc...
+		inside: 	true
+	Receiver's instance variables: 
+		morph: 	nil
+
+
+MorphicEventDispatcher>>handleDropFiles:
+	Receiver: a MorphicEventDispatcher
+	Arguments and temporary variables: 
+		anEvent: 	[(886@193) dropFilesEvent nil]
+	Receiver's instance variables: 
+		morph: 	nil
+
+
+DropFilesEvent>>sentTo:
+	Receiver: [(886@193) dropFilesEvent nil]
+	Arguments and temporary variables: 
+		anObject: 	a MorphicEventDispatcher
+	Receiver's instance variables: 
+		timeStamp: 	nil
+		source: 	a HandMorph(454097152)
+		windowIndex: 	nil
+		position: 	(886@193)
+		contents: 	1
+		wasHandled: 	true
+
+
+[ ^ anEvent sentTo: self ] in MorphicEventDispatcher>>dispatchEvent:with:
+	Receiver: a MorphicEventDispatcher
+	Arguments and temporary variables: 
+		anEvent: 	[(886@193) dropFilesEvent nil]
+		aMorph: 	a WorldMorph(479349760) [world]
+	Receiver's instance variables: 
+		morph: 	nil
+
+
+BlockClosure>>ensure:
+	Receiver: [ ^ anEvent sentTo: self ]
+	Arguments and temporary variables: 
+		aBlock: 	[ morph := nil ]
+		complete: 	nil
+		returnValue: 	nil
+	Receiver's instance variables: 
+		outerContext: 	MorphicEventDispatcher>>dispatchEvent:with:
+		startpc: 	48
+		numArgs: 	0
+
+
+MorphicEventDispatcher>>dispatchEvent:with:
+	Receiver: a MorphicEventDispatcher
+	Arguments and temporary variables: 
+		anEvent: 	[(886@193) dropFilesEvent nil]
+		aMorph: 	a WorldMorph(479349760) [world]
+	Receiver's instance variables: 
+		morph: 	nil
+
+
+WorldMorph(Morph)>>processEvent:using:
+	Receiver: a WorldMorph(479349760) [world]
+	Arguments and temporary variables: 
+		anEvent: 	[(886@193) dropFilesEvent nil]
+		defaultDispatcher: 	a MorphicEventDispatcher
+	Receiver's instance variables: 
+		bounds: 	(0@0) corner: (976@665)
+		owner: 	nil
+		submorphs: 	an Array(a MenubarMorph(783971328) a TaskbarMorph(733536000) an Imag...etc...
+		fullBounds: 	(0@0) corner: (976@665)
+		color: 	(Color r: 0.295 g: 0.295 b: 0.295 alpha: 1.0)
+		extension: 	a MorphExtension (668403968) [other:  (dragEnabled -> true) (dropEna...etc...
+		borderWidth: 	0
+		borderColor: 	(Color r: 0.705 g: 0.705 b: 0.705 alpha: 1.0)
+		backgroundMorph: 	nil
+		worldState: 	a WorldState
+		griddingOn: 	nil
+		osWindow: 	nil
+		osWindowMutex: 	nil
+		session: 	nil
+
+
+WorldMorph(Morph)>>processEvent:
+	Receiver: a WorldMorph(479349760) [world]
+	Arguments and temporary variables: 
+		anEvent: 	[(886@193) dropFilesEvent nil]
+	Receiver's instance variables: 
+		bounds: 	(0@0) corner: (976@665)
+		owner: 	nil
+		submorphs: 	an Array(a MenubarMorph(783971328) a TaskbarMorph(733536000) an Imag...etc...
+		fullBounds: 	(0@0) corner: (976@665)
+		color: 	(Color r: 0.295 g: 0.295 b: 0.295 alpha: 1.0)
+		extension: 	a MorphExtension (668403968) [other:  (dragEnabled -> true) (dropEna...etc...
+		borderWidth: 	0
+		borderColor: 	(Color r: 0.705 g: 0.705 b: 0.705 alpha: 1.0)
+		backgroundMorph: 	nil
+		worldState: 	a WorldState
+		griddingOn: 	nil
+		osWindow: 	nil
+		osWindowMutex: 	nil
+		session: 	nil
+
+
+HandMorph>>sendEvent:focus:clear:
+	Receiver: a HandMorph(454097152)
+	Arguments and temporary variables: 
+		anEvent: 	[(886@193) dropFilesEvent nil]
+		focusHolder: 	nil
+		aBlock: 	[ nil ]
+		result: 	nil
+	Receiver's instance variables: 
+		bounds: 	(203@506) corner: (219@522)
+		owner: 	a WorldMorph(479349760) [world]
+		submorphs: 	#()
+		fullBounds: 	(203@506) corner: (219@522)
+		color: 	Color blue
+		extension: 	nil
+		mouseFocus: 	nil
+		keyboardFocus: 	a MenubarMorph(783971328)
+		eventListeners: 	nil
+		mouseListeners: 	nil
+		keyboardListeners: 	nil
+		mouseClickState: 	nil
+		mouseOverHandler: 	a MouseOverHandler
+		lastMouseEvent: 	[(203@506) mouseOver 15219093 nil]
+		targetOffset: 	(477@198)
+		damageRecorder: 	a DamageRecorder
+		cacheCanvas: 	nil
+		cachedCanvasHasHoles: 	false
+		temporaryCursor: 	nil
+		temporaryCursorOffset: 	nil
+		hardwareCursor: 	nil
+		hasChanged: 	true
+		savedPatch: 	nil
+		lastEventBuffer: 	#(1 15219093 188 545 0 0 0 1)
+		lastKeyScanCode: 	nil
+		combinedChar: 	nil
+		eventSource: 	nil
+		lastSystemEvent: 	nil
+		captureBlock: 	nil
+		recentModifiers: 	0
+
+
+HandMorph>>sendEvent:focus:
+	Receiver: a HandMorph(454097152)
+	Arguments and temporary variables: 
+		anEvent: 	[(886@193) dropFilesEvent nil]
+		focusHolder: 	nil
+	Receiver's instance variables: 
+		bounds: 	(203@506) corner: (219@522)
+		owner: 	a WorldMorph(479349760) [world]
+		submorphs: 	#()
+		fullBounds: 	(203@506) corner: (219@522)
+		color: 	Color blue
+		extension: 	nil
+		mouseFocus: 	nil
+		keyboardFocus: 	a MenubarMorph(783971328)
+		eventListeners: 	nil
+		mouseListeners: 	nil
+		keyboardListeners: 	nil
+		mouseClickState: 	nil
+		mouseOverHandler: 	a MouseOverHandler
+		lastMouseEvent: 	[(203@506) mouseOver 15219093 nil]
+		targetOffset: 	(477@198)
+		damageRecorder: 	a DamageRecorder
+		cacheCanvas: 	nil
+		cachedCanvasHasHoles: 	false
+		temporaryCursor: 	nil
+		temporaryCursorOffset: 	nil
+		hardwareCursor: 	nil
+		hasChanged: 	true
+		savedPatch: 	nil
+		lastEventBuffer: 	#(1 15219093 188 545 0 0 0 1)
+		lastKeyScanCode: 	nil
+		combinedChar: 	nil
+		eventSource: 	nil
+		lastSystemEvent: 	nil
+		captureBlock: 	nil
+		recentModifiers: 	0
+
+
+HandMorph>>handleEvent:
+	Receiver: a HandMorph(454097152)
+	Arguments and temporary variables: 
+		anEvent: 	[(886@193) dropFilesEvent nil]
+		evt: 	[(886@193) dropFilesEvent nil]
+	Receiver's instance variables: 
+		bounds: 	(203@506) corner: (219@522)
+		owner: 	a WorldMorph(479349760) [world]
+		submorphs: 	#()
+		fullBounds: 	(203@506) corner: (219@522)
+		color: 	Color blue
+		extension: 	nil
+		mouseFocus: 	nil
+		keyboardFocus: 	a MenubarMorph(783971328)
+		eventListeners: 	nil
+		mouseListeners: 	nil
+		keyboardListeners: 	nil
+		mouseClickState: 	nil
+		mouseOverHandler: 	a MouseOverHandler
+		lastMouseEvent: 	[(203@506) mouseOver 15219093 nil]
+		targetOffset: 	(477@198)
+		damageRecorder: 	a DamageRecorder
+		cacheCanvas: 	nil
+		cachedCanvasHasHoles: 	false
+		temporaryCursor: 	nil
+		temporaryCursorOffset: 	nil
+		hardwareCursor: 	nil
+		hasChanged: 	true
+		savedPatch: 	nil
+		lastEventBuffer: 	#(1 15219093 188 545 0 0 0 1)
+		lastKeyScanCode: 	nil
+		combinedChar: 	nil
+		eventSource: 	nil
+		lastSystemEvent: 	nil
+		captureBlock: 	nil
+		recentModifiers: 	0
+
+
+HandMorph>>processEventsFromQueue:
+	Receiver: a HandMorph(454097152)
+	Arguments and temporary variables: 
+		anEventQueue: 	an InputEventSensor
+		evt: 	[(886@193) dropFilesEvent nil]
+		evtBuf: 	#(3 24460 4 886 193 0 1 1)
+		type: 	3
+		hadAny: 	false
+	Receiver's instance variables: 
+		bounds: 	(203@506) corner: (219@522)
+		owner: 	a WorldMorph(479349760) [world]
+		submorphs: 	#()
+		fullBounds: 	(203@506) corner: (219@522)
+		color: 	Color blue
+		extension: 	nil
+		mouseFocus: 	nil
+		keyboardFocus: 	a MenubarMorph(783971328)
+		eventListeners: 	nil
+		mouseListeners: 	nil
+		keyboardListeners: 	nil
+		mouseClickState: 	nil
+		mouseOverHandler: 	a MouseOverHandler
+		lastMouseEvent: 	[(203@506) mouseOver 15219093 nil]
+		targetOffset: 	(477@198)
+		damageRecorder: 	a DamageRecorder
+		cacheCanvas: 	nil
+		cachedCanvasHasHoles: 	false
+		temporaryCursor: 	nil
+		temporaryCursorOffset: 	nil
+		hardwareCursor: 	nil
+		hasChanged: 	true
+		savedPatch: 	nil
+		lastEventBuffer: 	#(1 15219093 188 545 0 0 0 1)
+		lastKeyScanCode: 	nil
+		combinedChar: 	nil
+		eventSource: 	nil
+		lastSystemEvent: 	nil
+		captureBlock: 	nil
+		recentModifiers: 	0
+
+
+HandMorph>>processEvents
+	Receiver: a HandMorph(454097152)
+	Arguments and temporary variables: 
+
+	Receiver's instance variables: 
+		bounds: 	(203@506) corner: (219@522)
+		owner: 	a WorldMorph(479349760) [world]
+		submorphs: 	#()
+		fullBounds: 	(203@506) corner: (219@522)
+		color: 	Color blue
+		extension: 	nil
+		mouseFocus: 	nil
+		keyboardFocus: 	a MenubarMorph(783971328)
+		eventListeners: 	nil
+		mouseListeners: 	nil
+		keyboardListeners: 	nil
+		mouseClickState: 	nil
+		mouseOverHandler: 	a MouseOverHandler
+		lastMouseEvent: 	[(203@506) mouseOver 15219093 nil]
+		targetOffset: 	(477@198)
+		damageRecorder: 	a DamageRecorder
+		cacheCanvas: 	nil
+		cachedCanvasHasHoles: 	false
+		temporaryCursor: 	nil
+		temporaryCursorOffset: 	nil
+		hardwareCursor: 	nil
+		hasChanged: 	true
+		savedPatch: 	nil
+		lastEventBuffer: 	#(1 15219093 188 545 0 0 0 1)
+		lastKeyScanCode: 	nil
+		combinedChar: 	nil
+		eventSource: 	nil
+		lastSystemEvent: 	nil
+		captureBlock: 	nil
+		recentModifiers: 	0
+
+
+[ :h | 
+self activeHand: h.
+h processEvents.
+self activeHand: nil ] in WorldState>>doOneCycleNowFor:
+	Receiver: a WorldState
+	Arguments and temporary variables: 
+		aWorld: 	a WorldMorph(479349760) [world]
+		h: 	a HandMorph(454097152)
+	Receiver's instance variables: 
+		hands: 	an Array(a HandMorph(454097152))
+		viewBox: 	(0@0) corner: (976@665)
+		canvas: 	a FormCanvas on: DisplayScreen(976x665x32)
+		damageRecorder: 	a DamageRecorder
+		stepList: 	a Heap()
+		lastStepTime: 	17034
+		lastStepMessage: 	nil
+		lastCycleTime: 	24473
+		alarms: 	a Heap()
+		lastAlarmTime: 	24448
+		menuBuilder: 	nil
+		activeHand: 	a HandMorph(454097152)
+		currentCursor: 	((CursorWithMask
+	extent: (16@16)
+	depth: 1
+	fromArray: #(
+		2r0...etc...
+
+
+Array(SequenceableCollection)>>do:
+	Receiver: an Array(a HandMorph(454097152))
+	Arguments and temporary variables: 
+		aBlock: 	[ :h | 
+self activeHand: h.
+h processEvents.
+self activeHand: nil ]
+		index: 	1
+	Receiver's instance variables: 
+an Array(a HandMorph(454097152))
+
+WorldState>>handsDo:
+	Receiver: a WorldState
+	Arguments and temporary variables: 
+		aBlock: 	[ :h | 
+self activeHand: h.
+h processEvents.
+self activeHand: nil ]
+	Receiver's instance variables: 
+		hands: 	an Array(a HandMorph(454097152))
+		viewBox: 	(0@0) corner: (976@665)
+		canvas: 	a FormCanvas on: DisplayScreen(976x665x32)
+		damageRecorder: 	a DamageRecorder
+		stepList: 	a Heap()
+		lastStepTime: 	17034
+		lastStepMessage: 	nil
+		lastCycleTime: 	24473
+		alarms: 	a Heap()
+		lastAlarmTime: 	24448
+		menuBuilder: 	nil
+		activeHand: 	a HandMorph(454097152)
+		currentCursor: 	((CursorWithMask
+	extent: (16@16)
+	depth: 1
+	fromArray: #(
+		2r0...etc...
+
+
+WorldState>>doOneCycleNowFor:
+	Receiver: a WorldState
+	Arguments and temporary variables: 
+		aWorld: 	a WorldMorph(479349760) [world]
+	Receiver's instance variables: 
+		hands: 	an Array(a HandMorph(454097152))
+		viewBox: 	(0@0) corner: (976@665)
+		canvas: 	a FormCanvas on: Disp
