@@ -1845,4 +1845,22 @@ self halt.
 	 It is called once by the competition framework when the mind is instantiated.
  	 'sketchRobot' is a copy of the world as seen by the robot's scanners 
 	"	"chekc for yellow square"	|width height itterator|. "initilize the variable"   width := sketchRobot map width.   height := sketchRobot map height.	itterator := 1.   1 to: height do:[ "for loop"   		:y | "assigns itterator number to i"        1 to: width do:[       	:x |			|energyValue|.			energyValue := ((sketchRobot map cellAt: x@y) energy).         (energyValue> 90) "the x@y signifies a point object ex: (1,1) or (5,99)"         ifTrue: [          	highestPointSquares add: energyValue.			itterator := itterator + 1.         	doesYellowSquareExist := true.         ].		].	].	Transcript show: (highestPointSquares sorted).
-! !----QUIT----2020-01-29T16:25:49.418887-05:00 JRMPC-Code.image priorSource: 124570!
+! !----QUIT----2020-01-29T16:25:49.418887-05:00 JRMPC-Code.image priorSource: 124570!----QUIT----2020-01-31T01:37:18.276338-05:00 JRMPC-Code.image priorSource: 131151!!RobotMind methodsFor: 'running' stamp: 'BenTran 1/31/2020 10:46' prior: 33684247!initialize 
+	"COMPETITION ENTRIES _MAY_ OVERRIDE THIS METHOD.
+	 This method is not part of the competition API, but a standard part of Pharo
+	 called when objects are instatiated."	doesYellowSquareExist := false.	highestPointSquares := OrderedCollection new. 	depthNN := 7. "number of layers deep that the NN should look at"
+	super initialize! !!RobotMind methodsFor: 'running' stamp: 'BenTran 1/31/2020 11:31' prior: 33684617!setupOn: sketchRobot
+	"COMPETITION ENTRIES _MAY_ OVERRIDE THIS METHOD.
+	 This method facilitates initial setup of the mind related to the map parameters.
+	 It is called once by the competition framework when the mind is instantiated.
+ 	 'sketchRobot' is a copy of the world as seen by the robot's scanners 
+	"	"chekc for yellow square"	|width height itterator|. "initilize the variable"   width := sketchRobot map width.   height := sketchRobot map height.	itterator := 1.   1 to: height do:[ "for loop"   		:y | "assigns itterator number to i"        1 to: width do:[       	:x |			|energyValue|.			energyValue := ((sketchRobot map cellAt: x@y) energy).         (energyValue> 90) "the x@y signifies a point object ex: (1,1) or (5,99)"         ifTrue: [          	highestPointSquares add: energyValue.			itterator := itterator + 1.         	doesYellowSquareExist := true.         ].		].	].	Transcript show: (highestPointSquares sorted).			
+! !!RobotMind methodsFor: 'running' stamp: 'BenTran 1/31/2020 11:31' prior: 33682119!determineDirectionForRobot: sketchRobot    "COMPETITION ENTRIES _MUST_ OVERRIDE THIS METHOD.     This method is the main entrypoint for competition entries.     It is called each time the game world progresses one step in time.     'sketchRobot' is a copy of the map/robots as seen by a robot's scanners (i.e. no internal state).      Each time step provides a new independent scan 'sketchRobot'.     The mind instance remains constant across steps (i.e. it has memory across time steps).       The actual map/robots remain inaccessible to prevent accidental corruption of the game.    "	sketchRobot moveLeft.! !!RobotMind methodsFor: 'running' stamp: 'BenTran 1/31/2020 11:32' prior: 33685835!initialize 
+	"COMPETITION ENTRIES _MAY_ OVERRIDE THIS METHOD.
+	 This method is not part of the competition API, but a standard part of Pharo
+	 called when objects are instatiated."	doesYellowSquareExist := false.	highestPointSquares := OrderedCollection new. 	depthNN := 7. "number of layers deep that the NN should look at"	currentX = 0.	currentY := 0.
+	super initialize! !!RobotMind methodsFor: 'running' stamp: 'BenTran 1/31/2020 11:32' prior: 33688032!initialize 
+	"COMPETITION ENTRIES _MAY_ OVERRIDE THIS METHOD.
+	 This method is not part of the competition API, but a standard part of Pharo
+	 called when objects are instatiated."	doesYellowSquareExist := false.	highestPointSquares := OrderedCollection new. 	depthNN := 7. "number of layers deep that the NN should look at"	currentX := 0.	currentY := 0.
+	super initialize! !!RobotMind methodsFor: 'as yet unclassified' stamp: 'BenTran 1/31/2020 11:40'!plotPathForNN: sketchRobot	| currentItterations x y paths|	currentItterations := 1.	x := currentX.	y := currentY.	paths := Dictionary newFrom: {0 -> OrderedCollection new.}.	paths at: 0 at: 0 put: (Array newFrom: #(x y)). "puts an array within the ordered collection adfined above"	Transcript crShow: paths.		! !
