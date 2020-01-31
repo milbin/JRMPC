@@ -1,18 +1,17 @@
 import pygame as pg
 import math
 import random
-import time
 
 pg.init()
 
-w = 900
-h = 900
+w = 800
+h = 800
 screen = pg.display.set_mode((w, h))
 pg.display.set_caption("JRMPC")
 clock = pg.time.Clock()
-fps = 60
-rows = 40
-columns = 40
+fps = 30
+rows = 30
+columns = 30
 highest = 100
 
 #euclidian distance
@@ -59,7 +58,6 @@ class Spot:
         self.x = x
         self.y = y
         self.points = points
-        self.pathsDraw = []
     def display(self):
         #scale the points to fit on the screen
         x = self.x * (w/grid.rows)
@@ -99,7 +97,6 @@ class Grid:
                     pointVal = random.randint(0, int(highest/10))
                     if dist(x, y, center[0], center[1]) <= radius:
                         pointVal = int((((radius-dist(x, y, center[0], center[1]))/radius)**2)*highest)
-                        print(pointVal)
                     self.grid[(x, y)] = Spot(self, x, y, pointVal)
 
         elif distribution == "line":
@@ -166,6 +163,8 @@ class Robot:
         self.points = points #points robot has accumulated
         self.path = []
         self.color = (0, 255, 0)
+        self.allPath = {}
+        self.totalEnergyCollected = 0
 
         #right from the getgo steals points from the spot it's sitting on
         self.points += grid.spot_at(self.x, self.y).points
@@ -220,7 +219,7 @@ class Robot:
             #if the target field has been reached, switch over to nearest neighbor
             if (self.x, self.y) in targetField.values():
                 self.path = []
-                self.x, self.y = self.nearestNeighbor(Xrange=range(min(xvals), max(xvals)+1), Yrange=range(min(yvals), max(yvals)+1))
+                self.x, self.y = self.nearest_neighbor(iterations)
                 if self.grid.spot_at(self.x, self.y).points == 0:
                     self.grid.findDensity(3)
             #if not, continue through path
@@ -272,37 +271,12 @@ class Robot:
             path.append((neighbor[0], neighbor[1]))  # current spot is now part of path
             return self.Astar(target, neighbor[0], neighbor[1], traversed, path)
 
-
-    def nearestNeighbor(self, x, y, Xrange=None, Yrange=None, iterations=1, currentIteration=1, traversed={}):
-        traversed.append((x, y))
-        neighbors = [self.right(), self.left(), self.up(), self.down()] #possible directions
-        largest = None #position that will net the most points
-        for neighbor in neighbors:
-            #restricts possible positions if a range is given
-            if Xrange and Yrange:
-                if neighbor[0] not in Xrange or neighbor[1] not in Yrange:
-                    continue
-            if (neighbor[0], neighbor[1]) in largest:
-                continue
-
-            traversed.append((neighbor[0], neighbor[1]))
-            #if no optimal position is specified, set the current position as the optimal
-            if not largest:
-                largest = neighbor
-            #if current position is more optimal than the previous optimal position, set it as the most optimal
-            elif self.grid.spot_at(neighbor[0], neighbor[1]).points > self.grid.spot_at(largest[0], largest[1]).points:
-                largest = neighbor
-            if currentIteration >= iterations:
-                return traversed[1]
-            else:
-                return self.nearestNeighbor(neighbor[0], neighbor[1], iterations=iterations, currentIteration = currentIteration+1, traversed=traversed)
-
-        return largest
-
     def nearest_neighbor(self, iterations, Xrange=None, Yrange=None):
         currentIteration = 1
         x, y = self.x, self.y
         paths = {0:[(x, y)]}
+        pathID = 0
+        pathEnergies = {0:0}
 
         #iterate as many times as specified
         while currentIteration <= iterations:
@@ -319,28 +293,50 @@ class Robot:
                             continue
                     #only review this neighbor if it goes over new ground
                     if (neighbor[0], neighbor[1]) not in path:
-                        newVal = value + self.grid.spot_at(neighbor[0], neighbor[1]).points #more points are added as it goes over new ground
+                        newVal = pathEnergies[value] + self.grid.spot_at(neighbor[0], neighbor[1]).points #more points are added as it goes over new ground
                         # this new position is added to the overall path
                         newPath = path.copy()
                         newPath.append((neighbor[0], neighbor[1]))
-                        newPaths[newVal] = newPath
+                        newPaths[pathID] = newPath
+                        pathEnergies[pathID] = newVal
+                        pathID += 1
 
             #update variables
-            paths = newPaths
+            paths = newPaths.copy()
             currentIteration += 1
-        #store best path
-        self.pathsDraw = paths[max(paths.keys())]
 
-        bestPath = paths[max(paths.keys())]
+        self.allPath = paths.copy()
+
+        bestPathID = 0
+        for (key,value) in pathEnergies.items():
+            if max(pathEnergies.values()) == value:
+                bestPathID = key
+        bestPath = paths[bestPathID]
+        self.totalEnergyCollected += pathEnergies[bestPathID]
+        print(self.totalEnergyCollected)
         bestPath.remove(bestPath[0])
         return bestPath
-
-    def newNeearestNeighbor(self, itterations):
-        pass
 
 
     #draws the robot on screen
     def display(self):
+        for path in self.allPath.values():
+            for coord in path:
+                if coord in self.path:
+                    # scales point to fit onto screen
+                    x = coord[0] * (w / grid.columns)
+                    y = coord[1] * (h / grid.rows)
+                    r = (w / grid.rows) / 2
+
+                    pg.draw.circle(screen, (100, 100, 255), (int(x + r), int(y + r)), int(r / 2), 0)
+                else:
+                    # scales point to fit onto screen
+                    x = coord[0] * (w / grid.columns)
+                    y = coord[1] * (h / grid.rows)
+                    r = (w / grid.rows) / 2
+
+                    pg.draw.circle(screen, (0, 0, 0), (int(x + r), int(y + r)), int(r / 2), 0)
+
         #scales point to fit onto screen
         x = self.x * (w / grid.columns)
         y = self.y * (h / grid.rows)
@@ -348,17 +344,9 @@ class Robot:
 
         pg.draw.circle(screen, self.color, (int(x) + int(r), int(y) + int(r)), int(r), 0)
 
-        for cord in self.pathsDraw:
-            # scales point to fit onto screen
-            x = cord[0] * (w / grid.columns)
-            y = cord[1] * (h / grid.rows)
-            r = (w / grid.rows) / 2
-
-            pg.draw.circle(screen, (0, 0, 0), (int(x + r), int(y + r)), int(r / 2), 0)
-
 grid = Grid(rows, columns, distribution="random")
 grid.findDensity(5)
-robot1 = Robot(grid, 0, 0, 0)
+robot1 = Robot(grid, 10, 10, 0)
 robot2 = Robot(grid, 0, 0, 0)
 robot2.color = (127, 0, 127)
 robot3 = Robot(grid, 0, 0, 0)
@@ -367,11 +355,10 @@ robot3.color = (127, 127, 0)
 running = True
 pause = False
 while running:
-    # cancels loop if user exits screen
+    #cancels loop if user exits screen
     for event in pg.event.get():
         if event.type == pg.QUIT:
-            print("1 iteration = {}, 2 iterations = {}, 3 iterations = {}".format(robot1.points, robot2.points,
-                                                                                  robot3.points))
+            print("1 iteration = {}, 2 iterations = {}, 3 iterations = {}".format(robot1.points, robot2.points, robot3.points))
             running = False
         if event.type == pg.KEYDOWN:
             if event.key == pg.K_SPACE:
@@ -380,18 +367,18 @@ while running:
                 else:
                     pause = True
 
-    screen.fill((0, 0, 0))  # screen black
+    screen.fill((0, 0, 0)) #screen black
 
     grid.display()  # displays spots
     if not pause:
-        robot1.move("nearestNeighbor", iterations=1)  # moves bot
-        robot2.move("nearestNeighbor", iterations=2)  # moves bot
-        robot3.move("nearestNeighbor", iterations=50)  # moves bot
+        robot1.move("nearestNeighbor", iterations=1) # moves bot
+        #robot2.move("nearestNeighbor", iterations=2) # moves bot
+        robot3.move("nearestNeighbor", iterations=6) # moves bot
 
     robot1.display()  # displays bot
-    robot2.display()  # displays bot
+    #robot2.display()  # displays bot
     robot3.display()  # displays bot
 
-    # updates frame
+    #updates frame
     pg.display.update()
     clock.tick(fps)
