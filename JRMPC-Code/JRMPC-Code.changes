@@ -1845,4 +1845,4 @@ self halt.
 	 It is called once by the competition framework when the mind is instantiated.
  	 'sketchRobot' is a copy of the world as seen by the robot's scanners 
 	"	"chekc for yellow square"	|width height itterator|. "initilize the variable"   width := sketchRobot map width.   height := sketchRobot map height.	itterator := 1.   1 to: height do:[ "for loop"   		:y | "assigns itterator number to i"        1 to: width do:[       	:x |			|energyValue|.			energyValue := ((sketchRobot map cellAt: x@y) energy).         (energyValue> 90) "the x@y signifies a point object ex: (1,1) or (5,99)"         ifTrue: [          	highestPointSquares add: energyValue.			itterator := itterator + 1.         	doesYellowSquareExist := true.         ].		].	].	Transcript show: (highestPointSquares sorted).
-! !
+! !----QUIT----2020-01-29T16:25:49.418887-05:00 JRMPC-Code.image priorSource: 124570!
