@@ -300,7 +300,7 @@ class Robot:
                         newPaths[pathID] = newPath
                         pathEnergies[pathID] = newVal
                         pathID += 1
-
+    
             #update variables
             paths = newPaths.copy()
             currentIteration += 1
@@ -313,7 +313,6 @@ class Robot:
                 bestPathID = key
         bestPath = paths[bestPathID]
         self.totalEnergyCollected += pathEnergies[bestPathID]
-        print(self.totalEnergyCollected)
         bestPath.remove(bestPath[0])
         return bestPath
 

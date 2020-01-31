@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="884be312-6042-41ca-9a2d-1c836ede7802" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../JRMPC-Code/JRMPC-Code.changes" beforeDir="false" afterPath="$PROJECT_DIR$/../JRMPC-Code/JRMPC-Code.changes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JRMPC-Code/JRMPC-Code.image" beforeDir="false" afterPath="$PROJECT_DIR$/../JRMPC-Code/JRMPC-Code.image" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JRMPC-Code/PharoDebug.log" beforeDir="false" afterPath="$PROJECT_DIR$/../JRMPC-Code/PharoDebug.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JRMPC-Code/pharo-local/ombu-sessions/Pharo7.0.4-0-32bit-ccd1f64.5dw05uqbeg0ru52tyr7lpg9x2.ombu" beforeDir="false" afterPath="$PROJECT_DIR$/../JRMPC-Code/pharo-local/ombu-sessions/Pharo7.0.4-0-32bit-ccd1f64.5dw05uqbeg0ru52tyr7lpg9x2.ombu" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JRMPC-Code/stderr" beforeDir="false" afterPath="$PROJECT_DIR$/../JRMPC-Code/stderr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pathfinder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pathfinder.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,15 +16,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Python_Implementation$pathfinder.coverage" NAME="pathfinder Coverage Results" MODIFIED="1580451433311" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Python_Implementation$pathfinder.coverage" NAME="pathfinder Coverage Results" MODIFIED="1580497450830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pathfinder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1902">
-              <caret line="379" column="36" selection-start-line="379" selection-start-column="36" selection-end-line="379" selection-end-column="36" />
+            <state relative-caret-position="559">
+              <caret line="314" column="61" selection-start-line="314" selection-start-column="61" selection-end-line="314" selection-end-column="61" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -32,13 +36,14 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>nearest_neighbor</find>
       <find>time.</find>
       <find>neare</find>
       <find>display</find>
       <find>paths</find>
       <find>559</find>
       <find>5567</find>
+      <find>nearest_neighbor</find>
+      <find>newVal</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -136,12 +141,12 @@
       <option name="presentableId" value="Default" />
       <updated>1580440559036</updated>
       <workItem from="1580440560303" duration="11206000" />
-      <workItem from="1580486008864" duration="1576000" />
+      <workItem from="1580486008864" duration="8009000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12782000" />
+    <option name="totallyTimeSpent" value="19215000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -161,8 +166,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3286119" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.3286119" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -176,8 +181,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/pathfinder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1902">
-          <caret line="379" column="36" selection-start-line="379" selection-start-column="36" selection-end-line="379" selection-end-column="36" />
+        <state relative-caret-position="559">
+          <caret line="314" column="61" selection-start-line="314" selection-start-column="61" selection-end-line="314" selection-end-column="61" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
