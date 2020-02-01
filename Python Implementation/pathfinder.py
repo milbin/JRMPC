@@ -282,6 +282,7 @@ class Robot:
         while currentIteration <= iterations:
             newPaths = {} #new paths charted out
             #iterate through paths already charted out
+
             for value in paths.keys():
                 path = paths[value] #current path being charted out
                 neighbors = [leftOf(path[-1][0], path[-1][1]), rightOf(path[-1][0], path[-1][1]), upOf(path[-1][0], path[-1][1]), downOf(path[-1][0], path[-1][1])] #neighbors of latest position in path
@@ -300,7 +301,7 @@ class Robot:
                         newPaths[pathID] = newPath
                         pathEnergies[pathID] = newVal
                         pathID += 1
-    
+
             #update variables
             paths = newPaths.copy()
             currentIteration += 1
