@@ -347,7 +347,7 @@ def game(maxMoves):
             return bestPath
 
         def Dijkstra(self, scanningRadius):  # returns best path
-            # find points on the perimeter of the scanning radius circle --------------------------------------------------
+            # find points on the perimeter of the scanning radius circle ----------------------------------------------
             pointsOnPerimeter = []
             for i in range(scanningRadius):
                 pointsOnPerimeter.append(standardizePoint(self.x + i, self.y + scanningRadius - i))  # first quadrant arc from top waypoint to right waypoint
@@ -355,7 +355,7 @@ def game(maxMoves):
                 pointsOnPerimeter.append(standardizePoint(self.x - scanningRadius + i, self.y - i))  # third quadrant arc from top waypoint to left waypoint
                 pointsOnPerimeter.append(standardizePoint(self.x + scanningRadius - i, self.y - i))  # fourth quadrant arc from right waypoint to bottom waypoint
 
-            # create a new list of all points within the robots scanning radius --------------------------------------------
+            # create a new list of all points within the robots scanning radius ----------------------------------------
             grid = []
             pointsList = []
             for xCord in range(scanningRadius * 2 + 1):
@@ -367,12 +367,13 @@ def game(maxMoves):
                     grid.append(point)
                     pointsList.append(self.grid.spot_at(point[0], point[1]).points)
 
-            # initialization stuff -----------------------------------------------------------------------------------------
+            # initialization stuff -------------------------------------------------------------------------------------
             startingPoint = (self.x, self.y)
             distanceFromStart = {}
             previousVertex = {}
             visited = []
             unVisited = grid.copy()
+            print("STARTING POINT: " + str(startingPoint))
 
             # set all distances to infinity and initlize previous distance dict with default keys
             for point in unVisited:
@@ -391,8 +392,9 @@ def game(maxMoves):
                 for (key, value) in distanceFromStart.items():
                     if (value < minValue) and (key not in visited):
                         currentPoint = key
+                        minValue = value
                 # iterate through neighbors
-                neighbors = getNeighbors(currentPoint)  # returns a list of points in [(x,y), (x,y), (x,y), (x,y)] format
+                neighbors = getNeighbors(currentPoint)  # returns a list of points as [(x,y), (x,y), (x,y), (x,y)]
                 for neighbor in neighbors:
                     if neighbor in grid:  # check that neighbor is not out of bounds
                         distance = distanceFromStart[currentPoint] + (highestPoint - self.grid.spot_at(neighbor[0], neighbor[1]).points)
@@ -521,7 +523,6 @@ print("TOTALS: Robot 1: {}, Robot 2: {}, Robot 3: {}".format(robot1TotalPoints, 
 '''
 ISSUES:
  - Dijkstra only goes to squares on the perimeter
- - some values within the grid are still 1Bn
 
 
 
