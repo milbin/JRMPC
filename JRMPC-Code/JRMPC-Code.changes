@@ -1891,4 +1891,4 @@ self halt.
 	"COMPETITION ENTRIES _MAY_ OVERRIDE THIS METHOD.
 	 This method is not part of the competition API, but a standard part of Pharo
 	 called when objects are instatiated."	doesYellowSquareExist := false.	highestPointSquares := OrderedCollection new. 	depthNN := 1. "number of layers deep that the NN should look at"	currentX := 0.	currentY := 0.	directionList := OrderedCollection new.
-	super initialize! !----QUIT----2020-02-01T00:32:44.22319-05:00 JRMPC-Code.image priorSource: 131235!
+	super initialize! !----QUIT----2020-02-01T00:32:44.22319-05:00 JRMPC-Code.image priorSource: 131235!----QUIT----2020-02-02T23:23:24.070218-05:00 JRMPC-Code.image priorSource: 260513!

@@ -372,7 +372,7 @@ def game(maxMoves):
             distanceFromStart = {}
             previousVertex = {}
             visited = []
-            unVisited = grid
+            unVisited = grid.copy()
 
             # set all distances to infinity and initlize previous distance dict with default keys
             for point in unVisited:
@@ -418,7 +418,7 @@ def game(maxMoves):
                 point = previousVertex[point]
             bestPath.pop()  # removes last item from list since that is the current point we are at
             bestPath = list(reversed(bestPath))
-
+            print(distanceFromStart)
             self.allPath = {0:visited}
             return bestPath
 
@@ -521,7 +521,7 @@ print("TOTALS: Robot 1: {}, Robot 2: {}, Robot 3: {}".format(robot1TotalPoints, 
 '''
 ISSUES:
  - Dijkstra only goes to squares on the perimeter
- 
+ - some values within the grid are still 1Bn
 
 
 
