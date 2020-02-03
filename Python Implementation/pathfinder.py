@@ -12,9 +12,9 @@ def game(maxMoves):
     screen = pg.display.set_mode((w, h))
     pg.display.set_caption("JRMPC")
     clock = pg.time.Clock()
-    fps = 90
-    rows = 30
-    columns = 30
+    fps = 1
+    rows = 10
+    columns = 10
     highest = 100
 
     #euclidian distance
@@ -373,7 +373,6 @@ def game(maxMoves):
             previousVertex = {}
             visited = []
             unVisited = grid
-            highestPoint = 0
 
             # set all distances to infinity and initlize previous distance dict with default keys
             for point in unVisited:
@@ -382,9 +381,7 @@ def game(maxMoves):
             distanceFromStart[startingPoint] = 0
 
             # find the highest point since we will be subtracting the value of all other points from this in order to find the cost to move to a square
-            for points in pointsList:
-                if points > highestPoint:
-                    highestPoint = points
+            highestPoint = max(pointsList)
 
             # point visit loop --------------------------------------------------------------------------------------------
             while len(unVisited) > 0:
@@ -399,15 +396,10 @@ def game(maxMoves):
                 for neighbor in neighbors:
                     if neighbor in grid:  # check that neighbor is not out of bounds
                         distance = distanceFromStart[currentPoint] + (highestPoint - self.grid.spot_at(neighbor[0], neighbor[1]).points)
-                        if neighbor not in distanceFromStart.keys():
-                            distanceFromStart[neighbor] = distance
-                            previousVertex[neighbor] = currentPoint
-                        elif distance < distanceFromStart[neighbor]:
+                        if distance < distanceFromStart[neighbor]:
                             distanceFromStart[neighbor] = distance
                             previousVertex[neighbor] = currentPoint
                 visited.append(currentPoint)
-                if currentPoint not in unVisited:
-                    print("HERE")
                 unVisited.remove(currentPoint)
 
             # while loop has exited meaning that the shortest path has been found -----------------------------------------
@@ -418,6 +410,7 @@ def game(maxMoves):
                     bestPointToTravelTo = point
                     shortestPathWeight = distanceFromStart[point]
             bestPath = [bestPointToTravelTo]
+
             # work backwards from best point to find optimal path
             point = bestPointToTravelTo
             for unused in range(scanningRadius):
@@ -440,14 +433,14 @@ def game(maxMoves):
                     if coord in self.path:
                         # scales point to fit onto screen
                         x = coord[0] * (w / grid.columns)
-                        y = coord[1] * (h / grid.rows)
+                        y = coord[1] * (h / grid.rows) - 20
                         r = (w / grid.rows) / 2
 
-                        pg.draw.circle(screen, (100, 100, 255), (int(x + r), int(y + r)), int(r / 2), 0)
+                        pg.draw.circle(screen, (100, 100, 255), (int(x + r), int(y + r)), int(r / 4), 0)
                     else:
                         # scales point to fit onto screen
                         x = coord[0] * (w / grid.columns)
-                        y = coord[1] * (h / grid.rows)
+                        y = coord[1] * (h / grid.rows) - 20
                         r = (w / grid.rows) / 2
 
                         pg.draw.circle(screen, (0, 0, 0), (int(x + r), int(y + r)), int(r / 4), 0)
@@ -462,7 +455,7 @@ def game(maxMoves):
     grid = Grid(rows, columns, distribution="random")
     grid.findDensity(5)
     robot1 = Robot(grid, 5, 5, 0)
-    robot2 = Robot(grid, 20, 20, 0)
+    robot2 = Robot(grid, 8, 8, 0)
     robot2.color = (127, 0, 127)
     robot3 = Robot(grid, 0, 0, 0)
     robot3.color = (127, 127, 0)
@@ -488,7 +481,7 @@ def game(maxMoves):
         grid.display()  # displays spots
         if not pause:
             robot1.move("nearestNeighbor", iterations=1) # moves bot
-            robot2.move("dijkstra", iterations=10) # moves bot
+            robot2.move("dijkstra", iterations=4) # moves bot
             #robot3.move("nearestNeighbor", iterations=6) # moves bot
             if moveNumber >= maxMoves:
                 return [robot1.points, robot2.points, robot3.points]
@@ -525,3 +518,15 @@ for testNumber in range(numberOfGamesToRun):
         pass
 
 print("TOTALS: Robot 1: {}, Robot 2: {}, Robot 3: {}".format(robot1TotalPoints, robot2TotalPoints, robot3TotalPoints))
+'''
+ISSUES:
+ - Dijkstra only goes to squares on the perimeter
+ 
+
+
+
+
+'''
+
+
+
