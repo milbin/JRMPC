@@ -405,21 +405,33 @@ def game(maxMoves):
                 unVisited.remove(currentPoint)
 
             # while loop has exited meaning that the shortest path has been found -----------------------------------------
-            shortestPathWeight = 1000000000000  # 1 billion
-            bestPointToTravelTo = (-1, -1)
-            for point in pointsOnPerimeter:
-                if distanceFromStart[point] < shortestPathWeight:
-                    bestPointToTravelTo = point
-                    shortestPathWeight = distanceFromStart[point]
-            bestPath = [bestPointToTravelTo]
+            shortestPathLength = 1000000000000  # 1 billion
+            bestPath = []
+            for point in grid:
+                if distanceFromStart[point] < shortestPathLength:
+                    # work backwards from best point to find optimal path
+                    path = [point]
+                    pathToStartFound = False
+                    while not pathToStartFound:
+                        path.append(previousVertex[point])
+                        point = previousVertex[point]
+                        if point == startingPoint:
+                            pathToStartFound = True
+                        elif len(path) > scanningRadius*4:
+                            break
 
-            # work backwards from best point to find optimal path
-            point = bestPointToTravelTo
-            for unused in range(scanningRadius):
-                bestPath.append(previousVertex[point])
-                point = previousVertex[point]
+                    if startingPoint == path[-1]:
+                        print(point)
+                        print(path)
+                        print(distanceFromStart[point])
+                        bestPath = path
+                        shortestPathLength = distanceFromStart[point]
+
+
+
             bestPath.pop()  # removes last item from list since that is the current point we are at
             bestPath = list(reversed(bestPath))
+            print(bestPath)
             print(distanceFromStart)
             self.allPath = {0:visited}
             return bestPath
