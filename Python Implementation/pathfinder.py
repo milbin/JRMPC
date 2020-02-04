@@ -12,7 +12,7 @@ def game(maxMoves):
     screen = pg.display.set_mode((w, h))
     pg.display.set_caption("JRMPC")
     clock = pg.time.Clock()
-    fps = 1
+    fps = 90
     rows = 10
     columns = 10
     highest = 100
@@ -373,7 +373,7 @@ def game(maxMoves):
             previousVertex = {}
             visited = []
             unVisited = grid.copy()
-            print("STARTING POINT: " + str(startingPoint))
+            #print("STARTING POINT: " + str(startingPoint))
 
             # set all distances to infinity and initlize previous distance dict with default keys
             for point in unVisited:
@@ -404,35 +404,39 @@ def game(maxMoves):
                 visited.append(currentPoint)
                 unVisited.remove(currentPoint)
 
-            # while loop has exited meaning that the shortest path has been found -----------------------------------------
+            # while loop has exited meaning that the shortest path has been found ---------------------------
             shortestPathLength = 1000000000000  # 1 billion
             bestPath = []
             for point in grid:
-                if distanceFromStart[point] < shortestPathLength:
+                if distanceFromStart[point] < shortestPathLength and point != startingPoint:
                     # work backwards from best point to find optimal path
-                    path = [point]
+                    path = [point]  # the point we are trying to is the first item since the list will be reversed
+                    newPoint = point  # initialize newPoint w since this will be reassigned in the while loop
                     pathToStartFound = False
                     while not pathToStartFound:
-                        path.append(previousVertex[point])
-                        point = previousVertex[point]
-                        if point == startingPoint:
-                            pathToStartFound = True
+                        newPoint = previousVertex[newPoint]  # get the previous point and add it to the list
+                        path.append(newPoint)
+                        if newPoint == startingPoint:  # if the starting point is equal to current point we found a path
+                            # sometimes the newPoint will be equal to starting point but less than scanningRadius so we need to break
+                            if len(path) > scanningRadius:
+                                pathToStartFound = True
+                                shortestPathLength = distanceFromStart[point]
+                                bestPath = path  # this best path is only truly the best once the while loop has exited
+                            else:
+                                break
                         elif len(path) > scanningRadius*4:
                             break
 
-                    if startingPoint == path[-1]:
-                        print(point)
-                        print(path)
-                        print(distanceFromStart[point])
-                        bestPath = path
-                        shortestPathLength = distanceFromStart[point]
+
+
 
 
 
             bestPath.pop()  # removes last item from list since that is the current point we are at
             bestPath = list(reversed(bestPath))
             print(bestPath)
-            print(distanceFromStart)
+            #print(distanceFromStart)
+            #print(previousVertex)
             self.allPath = {0:visited}
             return bestPath
 
@@ -510,15 +514,13 @@ def game(maxMoves):
         pg.display.update()
         clock.tick(fps)
 
-numberOfTests = 100  # set to zero to run no tests
+
 maxMoves = 100
-numberOfGamesToRun = 1
+numberOfGamesToRun = 10
 robot1TotalPoints = 0
 robot2TotalPoints = 0
 robot3TotalPoints = 0
 
-if numberOfTests > 0:
-    numberOfGamesToRun = numberOfTests
 for testNumber in range(numberOfGamesToRun):
     try:
         returnString = game(maxMoves)
@@ -529,7 +531,7 @@ for testNumber in range(numberOfGamesToRun):
         print("TOTALS: Robot 1: {}, Robot 2: {}, Robot 3: {}".format(robot1TotalPoints, robot2TotalPoints,
                                                                      robot3TotalPoints))
     except:
-        pass
+        raise
 
 print("TOTALS: Robot 1: {}, Robot 2: {}, Robot 3: {}".format(robot1TotalPoints, robot2TotalPoints, robot3TotalPoints))
 '''
