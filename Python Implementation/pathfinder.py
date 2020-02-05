@@ -13,9 +13,9 @@ def game(maxMoves):
     pg.display.set_caption("JRMPC")
     clock = pg.time.Clock()
     fps = 100
-    rows = 10
-    columns = 10
-    highest = 1
+    rows = 20
+    columns = 20
+    highest = 5
 
     #euclidian distance
     def dist(x1, y1, x2, y2):
@@ -275,7 +275,15 @@ def game(maxMoves):
                     start = timer()
                     self.path = self.Dijkstra(iterations)
                     end = timer()
-                    print("TIME FOR Dijkstra: " + str(end - start))  # Time in seconds, e.g. 5.38091952400282
+                    totalTime = end - start
+                    if totalTime > 0.1:
+                        print("TIME FOR Dijkstra: " + str(end - start))  # Time in seconds, e.g. 5.38091952400282
+
+                self.x, self.y = self.path[0][0], self.path[0][1]
+                self.path.remove(self.path[0])
+            elif movementType == "firstOrderNN":
+                if len(self.path) == 0:
+                    self.path = self.firstOrderNN()
 
                 self.x, self.y = self.path[0][0], self.path[0][1]
                 self.path.remove(self.path[0])
@@ -360,6 +368,17 @@ def game(maxMoves):
             self.totalEnergyCollected += pathEnergies[bestPathID]
             bestPath.remove(bestPath[0])
             return bestPath
+
+        def firstOrderNN(self):
+            x, y = self.x, self.y
+            neighbors = getNeighbors((x, y))  # returns a list of points as [(x,y), (x,y), (x,y), (x,y)]
+            points = {}
+            for neighbor in neighbors:
+                points[self.grid.spot_at(neighbor[0], neighbor[1]).points] = neighbor
+            return [points[max(list(points.keys()))]]
+
+
+
 
         def Dijkstra(self, scanningRadius):  # returns best path
             '''# find points on the perimeter of the scanning radius circle ----------------------------------------------
@@ -520,25 +539,25 @@ def game(maxMoves):
 
         grid.display()  # displays spots
         if not pause:
-            robot1.move("nearestNeighbor", iterations=4) # moves bot
-            robot2.move("dijkstra", iterations=10) # moves bot
-            #robot3.move("nearestNeighbor", iterations=6) # moves bot
+            #robot1.move("nearestNeighbor", iterations=4) # moves bot
+            robot2.move("dijkstra", iterations=5) # moves bot
+            robot3.move("firstOrderNN", iterations=0) # moves bot
             if moveNumber >= maxMoves:
                 return [robot1.points, robot2.points, robot3.points]
 
             moveNumber += 1
 
-        robot1.display()  # displays bot
+        #robot1.display()  # displays bot
         robot2.display()  # displays bot
-        #robot3.display()  # displays bot
+        robot3.display()  # displays bot
 
         #updates frame
         pg.display.update()
         clock.tick(fps)
 
 
-maxMoves = 300
-numberOfGamesToRun = 1
+maxMoves = 70
+numberOfGamesToRun = 20
 robot1TotalPoints = 0
 robot2TotalPoints = 0
 robot3TotalPoints = 0

@@ -12,15 +12,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Python_Implementation$pathfinder.coverage" NAME="pathfinder Coverage Results" MODIFIED="1580917733381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Python_Implementation$pathfinder.coverage" NAME="pathfinder Coverage Results" MODIFIED="1580933650784" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pathfinder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="67">
-              <caret line="277" column="20" lean-forward="true" selection-start-line="277" selection-start-column="20" selection-end-line="277" selection-end-column="20" />
+            <state relative-caret-position="156">
+              <caret line="544" column="38" lean-forward="true" selection-start-line="544" selection-start-column="38" selection-end-line="544" selection-end-column="38" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -50,10 +50,8 @@
       <find>self.path</find>
       <find>pointsOnPerimeter</find>
       <find>allPath</find>
-      <find>Dij</find>
       <find>(8, 8)</find>
       <find>Dijkstra</find>
-      <find>TIME</find>
       <find>random</find>
       <find>standard</find>
       <find>pirnt(</find>
@@ -62,6 +60,8 @@
       <find>(1, 1)</find>
       <find>scanningRadius</find>
       <find>print</find>
+      <find>TIME</find>
+      <find>Dij</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -75,8 +75,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-83" />
-    <option name="y" value="46" />
+    <option name="x" value="-84" />
+    <option name="y" value="45" />
     <option name="width" value="1940" />
     <option name="height" value="1050" />
   </component>
@@ -86,6 +86,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -97,7 +98,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -167,23 +167,24 @@
       <workItem from="1580786084033" duration="2869000" />
       <workItem from="1580832765799" duration="10476000" />
       <workItem from="1580911343421" duration="4036000" />
-      <workItem from="1580916171637" duration="1485000" />
+      <workItem from="1580916171637" duration="1994000" />
+      <workItem from="1580919232449" duration="3057000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65524000" />
+    <option name="totallyTimeSpent" value="69090000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28322148" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2872483" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.60339946" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.28611898" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -217,8 +218,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pathfinder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="277" column="20" lean-forward="true" selection-start-line="277" selection-start-column="20" selection-end-line="277" selection-end-column="20" />
+        <state relative-caret-position="156">
+          <caret line="544" column="38" lean-forward="true" selection-start-line="544" selection-start-column="38" selection-end-line="544" selection-end-column="38" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
