@@ -1,7 +1,7 @@
 import pygame as pg
 import math
 import random
-
+from timeit import default_timer as timer
 
 
 def game(maxMoves):
@@ -12,10 +12,10 @@ def game(maxMoves):
     screen = pg.display.set_mode((w, h))
     pg.display.set_caption("JRMPC")
     clock = pg.time.Clock()
-    fps = 90
+    fps = 100
     rows = 10
     columns = 10
-    highest = 100
+    highest = 1
 
     #euclidian distance
     def dist(x1, y1, x2, y2):
@@ -63,14 +63,22 @@ def game(maxMoves):
 
         return [right, down, left, up]
     def standardizePoint(xPoint, yPoint):
-        if xPoint < 0:
-            xPoint = columns + xPoint
-        if xPoint > (columns - 1):
-            xPoint = xPoint - columns
+        '''if xPoint < 0:
+            xPoint = (xPoint % columns) + columns
+        if xPoint > columns:
+            xPoint = (xPoint % columns) - columns
+        elif xPoint == columns:
+            xPoint = 0  # if xPoint is equal to columns, the result of a mod is zero so the value returns negative^
+
         if yPoint < 0:
-            yPoint = columns + yPoint
-        if yPoint > (rows - 1):
-            yPoint = yPoint - rows
+            yPoint = (yPoint % rows) + rows
+        if yPoint > rows:
+            yPoint = (yPoint % rows) - rows
+        elif yPoint == rows:
+            yPoint = 0
+        '''
+        xPoint = abs(xPoint % columns)
+        yPoint = abs(yPoint % rows)
 
         newPoint = (xPoint, yPoint)
         return newPoint
@@ -255,13 +263,20 @@ def game(maxMoves):
                         self.path.remove(self.path[0])
             elif movementType == "nearestNeighbor":
                 if len(self.path) == 0:
+                    start = timer()
                     self.path = self.nearest_neighbor(iterations)
+                    end = timer()
+                    #print("TIME FOR nearestNeighbor: " + str(end - start))  # Time in seconds, e.g. 5.38091952400282
                 self.x, self.y = self.path[0][0], self.path[0][1]
                 self.path.remove(self.path[0])
 
             elif movementType == "dijkstra":
                 if len(self.path) == 0:
+                    start = timer()
                     self.path = self.Dijkstra(iterations)
+                    end = timer()
+                    print("TIME FOR Dijkstra: " + str(end - start))  # Time in seconds, e.g. 5.38091952400282
+
                 self.x, self.y = self.path[0][0], self.path[0][1]
                 self.path.remove(self.path[0])
             #self.x, self.y = self.up()
@@ -347,14 +362,14 @@ def game(maxMoves):
             return bestPath
 
         def Dijkstra(self, scanningRadius):  # returns best path
-            # find points on the perimeter of the scanning radius circle ----------------------------------------------
+            '''# find points on the perimeter of the scanning radius circle ----------------------------------------------
             pointsOnPerimeter = []
             for i in range(scanningRadius):
                 pointsOnPerimeter.append(standardizePoint(self.x + i, self.y + scanningRadius - i))  # first quadrant arc from top waypoint to right waypoint
                 pointsOnPerimeter.append(standardizePoint(self.x - i, self.y + scanningRadius - i))  # second quadrant arc from top waypoint to left waypoint
                 pointsOnPerimeter.append(standardizePoint(self.x - scanningRadius + i, self.y - i))  # third quadrant arc from top waypoint to left waypoint
                 pointsOnPerimeter.append(standardizePoint(self.x + scanningRadius - i, self.y - i))  # fourth quadrant arc from right waypoint to bottom waypoint
-
+            '''
             # create a new list of all points within the robots scanning radius ----------------------------------------
             grid = []
             pointsList = []
@@ -364,8 +379,9 @@ def game(maxMoves):
                     yPoint = self.y - scanningRadius + yCord
                     # this will take the coordinate system wrap around the board
                     point = standardizePoint(xPoint, yPoint)
-                    grid.append(point)
-                    pointsList.append(self.grid.spot_at(point[0], point[1]).points)
+                    if point not in grid:  # sometimes you get repeats because of the point standardization
+                        grid.append(point)
+                        pointsList.append(self.grid.spot_at(point[0], point[1]).points)
 
             # initialization stuff -------------------------------------------------------------------------------------
             startingPoint = (self.x, self.y)
@@ -401,40 +417,46 @@ def game(maxMoves):
                         if distance < distanceFromStart[neighbor]:
                             distanceFromStart[neighbor] = distance
                             previousVertex[neighbor] = currentPoint
+
                 visited.append(currentPoint)
                 unVisited.remove(currentPoint)
 
             # while loop has exited meaning that the shortest path has been found ---------------------------
             shortestPathLength = 1000000000000  # 1 billion
             bestPath = []
-            for point in grid:
-                if distanceFromStart[point] < shortestPathLength and point != startingPoint:
-                    # work backwards from best point to find optimal path
-                    path = [point]  # the point we are trying to is the first item since the list will be reversed
-                    newPoint = point  # initialize newPoint w since this will be reassigned in the while loop
-                    pathToStartFound = False
-                    while not pathToStartFound:
-                        newPoint = previousVertex[newPoint]  # get the previous point and add it to the list
-                        path.append(newPoint)
-                        if newPoint == startingPoint:  # if the starting point is equal to current point we found a path
-                            # sometimes the newPoint will be equal to starting point but less than scanningRadius so we need to break
-                            if len(path) > scanningRadius:
-                                pathToStartFound = True
-                                shortestPathLength = distanceFromStart[point]
-                                bestPath = path  # this best path is only truly the best once the while loop has exited
-                            else:
+            while len(bestPath) == 0:
+                for point in grid:
+                    if distanceFromStart[point] < shortestPathLength and point != startingPoint:
+                        # work backwards from best point to find optimal path
+                        path = [point]  # the point we are trying to is the first item since the list will be reversed
+                        newPoint = point  # initialize newPoint w since this will be reassigned in the while loop
+                        pathToStartFound = False
+                        while not pathToStartFound:
+                            newPoint = previousVertex[newPoint]  # get the previous point and add it to the list
+                            path.append(newPoint)
+                            if newPoint == startingPoint:  # if the starting point is equal to current point we found a path
+                                # sometimes the newPoint will be equal to starting point but less than scanningRadius so we need to break
+                                if len(path) > scanningRadius:
+                                    pathToStartFound = True
+                                    shortestPathLength = distanceFromStart[point]
+                                    bestPath = path  # this best path is only truly the best once the while loop has exited
+                                else:
+                                    break  # starting point has been found but the path is too short
+                            elif len(path) > scanningRadius*4:
                                 break
-                        elif len(path) > scanningRadius*4:
-                            break
+                scanningRadius -= 1  # sometimes a path cannot be found that exceeds the scanningRadius so we need to lower it
 
 
 
 
 
 
+
+            if len(bestPath) == 0:
+                input("PAUSED EXECUTION")
             bestPath.pop()  # removes last item from list since that is the current point we are at
             bestPath = list(reversed(bestPath))
-            print(bestPath)
+            #print(bestPath)
             #print(distanceFromStart)
             #print(previousVertex)
             self.allPath = {0:visited}
@@ -498,8 +520,8 @@ def game(maxMoves):
 
         grid.display()  # displays spots
         if not pause:
-            robot1.move("nearestNeighbor", iterations=1) # moves bot
-            robot2.move("dijkstra", iterations=4) # moves bot
+            robot1.move("nearestNeighbor", iterations=4) # moves bot
+            robot2.move("dijkstra", iterations=10) # moves bot
             #robot3.move("nearestNeighbor", iterations=6) # moves bot
             if moveNumber >= maxMoves:
                 return [robot1.points, robot2.points, robot3.points]
@@ -515,11 +537,14 @@ def game(maxMoves):
         clock.tick(fps)
 
 
-maxMoves = 100
-numberOfGamesToRun = 10
+maxMoves = 300
+numberOfGamesToRun = 1
 robot1TotalPoints = 0
 robot2TotalPoints = 0
 robot3TotalPoints = 0
+robot1TotalWins = 0
+robot2TotalWins = 0
+robot3TotalWins = 0
 
 for testNumber in range(numberOfGamesToRun):
     try:
@@ -528,15 +553,22 @@ for testNumber in range(numberOfGamesToRun):
         robot1TotalPoints += returnString[0]
         robot2TotalPoints += returnString[1]
         robot3TotalPoints += returnString[2]
-        print("TOTALS: Robot 1: {}, Robot 2: {}, Robot 3: {}".format(robot1TotalPoints, robot2TotalPoints,
+        if returnString[0] > returnString[1] and returnString[0] > returnString[2]:
+            robot1TotalWins += 1
+        if returnString[1] > returnString[0] and returnString[1] > returnString[2]:
+            robot2TotalWins += 1
+        if returnString[2] > returnString[1] and returnString[2] > returnString[0]:
+            robot3TotalWins += 1
+        print("TOTAL POINTS: Robot 1: {}, Robot 2: {}, Robot 3: {}".format(robot1TotalPoints, robot2TotalPoints,
                                                                      robot3TotalPoints))
+        print("TOTAL WINS: Robot 1: {}, Robot 2: {}, Robot 3: {}".format(robot1TotalWins, robot2TotalWins,
+                                                                         robot3TotalWins))
     except:
         raise
 
-print("TOTALS: Robot 1: {}, Robot 2: {}, Robot 3: {}".format(robot1TotalPoints, robot2TotalPoints, robot3TotalPoints))
+
 '''
 ISSUES:
- - Dijkstra only goes to squares on the perimeter
 
 
 
