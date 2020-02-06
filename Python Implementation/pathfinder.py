@@ -403,6 +403,8 @@ def game(maxMoves):
                         pointsList.append(self.grid.spot_at(point[0], point[1]).points)
 
             # initialization stuff -------------------------------------------------------------------------------------
+            # find the highest point since we will be subtracting the value of all other points from this in order to find the cost to move to a square
+            highestPoint = max(pointsList)
             startingPoint = (self.x, self.y)
             distanceFromStart = {}
             previousVertex = {}
@@ -416,8 +418,7 @@ def game(maxMoves):
                 previousVertex[point] = (-1, -1)  # default value
             distanceFromStart[startingPoint] = 0
 
-            # find the highest point since we will be subtracting the value of all other points from this in order to find the cost to move to a square
-            highestPoint = max(pointsList)
+
 
             # point visit loop --------------------------------------------------------------------------------------------
             while len(unVisited) > 0:
@@ -465,14 +466,6 @@ def game(maxMoves):
                                 break
                 scanningRadius -= 1  # sometimes a path cannot be found that exceeds the scanningRadius so we need to lower it
 
-
-
-
-
-
-
-            if len(bestPath) == 0:
-                input("PAUSED EXECUTION")
             bestPath.pop()  # removes last item from list since that is the current point we are at
             bestPath = list(reversed(bestPath))
             #print(bestPath)
