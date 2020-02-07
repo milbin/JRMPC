@@ -413,7 +413,7 @@ def game(maxMoves):
             #print("STARTING POINT: " + str(startingPoint))
 
             # set all distances to infinity and initlize previous distance dict with default keys
-            for point in unVisited:
+            for point in grid:
                 distanceFromStart[point] = 1000000000000  # 1 billion, number must be very large because distance from starting point to all other points is unkown at this point
                 previousVertex[point] = (-1, -1)  # default value
             distanceFromStart[startingPoint] = 0
@@ -450,20 +450,18 @@ def game(maxMoves):
                         # work backwards from best point to find optimal path
                         path = [point]  # the point we are trying to is the first item since the list will be reversed
                         newPoint = point  # initialize newPoint w since this will be reassigned in the while loop
-                        pathToStartFound = False
-                        while not pathToStartFound:
+                        shouldBreak = False
+                        while not shouldBreak:
                             newPoint = previousVertex[newPoint]  # get the previous point and add it to the list
                             path.append(newPoint)
                             if newPoint == startingPoint:  # if the starting point is equal to current point we found a path
                                 # sometimes the newPoint will be equal to starting point but less than scanningRadius so we need to break
                                 if len(path) > scanningRadius:
-                                    pathToStartFound = True
                                     shortestPathLength = distanceFromStart[point]
                                     bestPath = path  # this best path is only truly the best once the while loop has exited
-                                else:
-                                    break  # starting point has been found but the path is too short
+                                shouldBreak = True  # starting point has been found but the path is too short
                             elif len(path) > scanningRadius*4:
-                                break
+                                shouldBreak = True
                 scanningRadius -= 1  # sometimes a path cannot be found that exceeds the scanningRadius so we need to lower it
 
             bestPath.pop()  # removes last item from list since that is the current point we are at
