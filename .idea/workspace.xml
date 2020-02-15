@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="884be312-6042-41ca-9a2d-1c836ede7802" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../JRMPC-Code/JRMPC-Code.changes" beforeDir="false" afterPath="$PROJECT_DIR$/../JRMPC-Code/JRMPC-Code.changes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JRMPC-Code/PharoDebug.log" beforeDir="false" afterPath="$PROJECT_DIR$/../JRMPC-Code/PharoDebug.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pathfinder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pathfinder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,15 +11,28 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Python_Implementation$JRMPC.coverage" NAME="JRMPC Coverage Results" MODIFIED="1581608312860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Python_Implementation$pathfinder.coverage" NAME="pathfinder Coverage Results" MODIFIED="1581091054208" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pathfinder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="467" column="28" selection-start-line="467" selection-start-column="28" selection-end-line="467" selection-end-column="28" />
+            <state relative-caret-position="233">
+              <caret line="545" lean-forward="true" selection-start-line="545" selection-end-line="545" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/JRMPC.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3229">
+              <caret line="323" column="30" selection-start-line="323" selection-start-column="24" selection-end-line="323" selection-end-column="30" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -33,9 +44,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>559</find>
-      <find>5567</find>
-      <find>newVal</find>
       <find>leftO</find>
       <find>.item</find>
       <find>Robot</find>
@@ -53,7 +61,6 @@
       <find>random</find>
       <find>standard</find>
       <find>pirnt(</find>
-      <find>print(</find>
       <find>(-1</find>
       <find>(1, 1)</find>
       <find>scanningRadius</find>
@@ -63,15 +70,20 @@
       <find>remove</find>
       <find>standardizePoint</find>
       <find>newPoint</find>
+      <find>findDensity</find>
+      <find>combined</find>
+      <find>densityField</find>
+      <find>print(</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/pathfinder.py" />
+        <option value="$PROJECT_DIR$/JRMPC.py" />
       </list>
     </option>
   </component>
@@ -120,7 +132,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.JRMPC">
+    <configuration name="JRMPC" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Python Implementation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/JRMPC.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="pathfinder" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Python Implementation" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -145,6 +179,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.JRMPC" />
         <item itemvalue="Python.pathfinder" />
       </list>
     </recent_temporary>
@@ -174,16 +209,17 @@
       <workItem from="1581000898856" duration="2773000" />
       <workItem from="1581018309258" duration="10404000" />
       <workItem from="1581090159293" duration="1936000" />
+      <workItem from="1581607264263" duration="1697000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84920000" />
+    <option name="totallyTimeSpent" value="86617000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3033557" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12214765" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -222,8 +258,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pathfinder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="467" column="28" selection-start-line="467" selection-start-column="28" selection-end-line="467" selection-end-column="28" />
+        <state relative-caret-position="233">
+          <caret line="545" lean-forward="true" selection-start-line="545" selection-end-line="545" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JRMPC.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3229">
+          <caret line="323" column="30" selection-start-line="323" selection-start-column="24" selection-end-line="323" selection-end-column="30" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
